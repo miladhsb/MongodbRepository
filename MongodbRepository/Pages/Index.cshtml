@@ -1,0 +1,118 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<button onclick="ShowCreateModal()" class="btn btn-primary mb-3">CreateCustomer</button>
+<div class="text-center">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="row">#</th>
+                <td>Id</td>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>Contact</td>
+                <td>Email</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            
+                @foreach (var item in Model.customers.ToList())
+                {
+                    <tr>
+                    <th scope="row">@(Model.customers.ToList().IndexOf(item)+1)</th>
+                    <td>@item.Id</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Contact</td>
+                    <td>@item.Email</td>
+                    <td>
+                        <a class="btn btn-danger" asp-page-handler="DeleteCustomer" asp-route-Id="@item.Id">Delete</a>
+                        <a class="btn btn-warning" asp-page="EditCustomer" asp-route-Id="@item.Id">Edit</a>
+                    </td>
+                </tr>
+                }
+           
+
+        </tbody>
+    </table>
+
+
+</div>
+
+@section Scripts{
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Customer</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form  asp-page-handler="CreateCustomer" method="post">
+                        <div class="mb-3 mt-3">
+                            <label asp-for="customer.FirstName" class="form-label">FirstName:</label>
+                            <input class="form-control" placeholder="Enter FirstName" asp-for="customer.FirstName">
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label asp-for="customer.LastName" class="form-label">LastName:</label>
+                            <input class="form-control" placeholder="Enter LastName" asp-for="customer.LastName">
+                        </div>
+
+                        <div class="mb-3 mt-3">
+                            <label asp-for="customer.Email" class="form-label">Email:</label>
+                            <input class="form-control" placeholder="Enter Email" asp-for="customer.Email">
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label asp-for="customer.Country" class="form-label">Country:</label>
+                            <input class="form-control" placeholder="Enter Country" asp-for="customer.Country">
+                        </div>
+
+                        <div class="mb-3 mt-3">
+                            <label asp-for="customer.Contact" class="form-label">Contact:</label>
+                            <input class="form-control" placeholder="Enter Contact" asp-for="customer.Contact">
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+
+                
+
+                </div>
+
+              
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+
+
+
+        function ShowCreateModal() {
+
+            var myModal = new bootstrap.Modal(document.getElementById("myModal"), {});
+            myModal.show();
+        }
+
+
+    </script>
+
+}

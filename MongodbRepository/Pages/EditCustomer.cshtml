@@ -1,0 +1,37 @@
+﻿@page
+@model MongodbRepository.Pages.EditCustomerModel
+@{
+}
+
+<div class="text-start">
+
+    <form method="post" asp-route-Id="@Model.customer?.Id">
+    <div class="mb-3 mt-3">
+        <label asp-for="customer.FirstName" class="form-label">FirstName:</label>
+        <input class="form-control" placeholder="Enter FirstName" asp-for="customer.FirstName">
+    </div>
+    <div class="mb-3 mt-3">
+        <label asp-for="customer.LastName" class="form-label">LastName:</label>
+        <input class="form-control" placeholder="Enter LastName" asp-for="customer.LastName">
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label asp-for="customer.Email" class="form-label">Email:</label>
+        <input class="form-control" placeholder="Enter Email" asp-for="customer.Email">
+    </div>
+    <div class="mb-3 mt-3">
+        <label asp-for="customer.Country" class="form-label">Country:</label>
+        <input class="form-control" placeholder="Enter Country" asp-for="customer.Country">
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label asp-for="customer.Contact" class="form-label">Contact:</label>
+        <input class="form-control" placeholder="Enter Contact" asp-for="customer.Contact">
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>
+    </div>
